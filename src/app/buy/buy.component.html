@@ -1,0 +1,55 @@
+<div class="p-2">There are NFTs on the blockchain: <b>{{total}}</b></div>
+
+
+
+<div class="container-fluid pt-4">
+  <div class="row">
+    <div class="token col-12 col-md-3 bg-light text-center m-2 border-2 border-dark" *ngFor="let token of tokens">
+      <div (click)="buyToken(token)" data-bs-toggle="modal" data-bs-target="#buyTokenModal">
+        <ng-container *ngIf="token.owner.toLowerCase() == account.toLowerCase()">
+          {{token.token}}
+          <div>This is your own token.</div>
+        </ng-container>
+        <ng-container *ngIf="token.price>0 && token.owner.toLowerCase() != account.toLowerCase()">
+          {{token.token}}
+          {{token.owner}}
+          {{token.price}} ETH
+        </ng-container>
+        <ng-container *ngIf="token.price<=0 && token.owner.toLowerCase() != account.toLowerCase()">
+          {{token.token}}
+          <div>This token is not on sale!</div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="buyTokenModal" tabindex="-1" #buyModal>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Buy Token
+          <ng-container *ngIf="selectedToken">
+            {{selectedToken.token}}
+          </ng-container>
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Price:
+        <ng-container *ngIf="selectedToken">
+          {{selectedToken.price}}
+        </ng-container>
+        ETH
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <ng-container *ngIf="selectedToken">
+          <button type="button" class="btn btn-primary" (click)="buyThisToken(selectedToken)" data-bs-dismiss="modal">Buy</button>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>

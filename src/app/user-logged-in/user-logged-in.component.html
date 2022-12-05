@@ -1,0 +1,68 @@
+<!--<div *ngIf="currentUser">-->
+  <!--Account = {{currentUser.account}}-->
+  <!--ID = {{currentUser.id}}-->
+  <!--Ether = {{currentEth}}-->
+<!--</div>-->
+
+
+<!--<ng-container *ngIf="users$">-->
+  <!--<div *ngFor="let u of users$ | async">-->
+    <!--{{u.account}}-->
+  <!--</div>-->
+<!--</ng-container>-->
+
+
+<table class="p-2 m-2">
+  <tr>
+    <th>Account</th>
+    <td>{{account}}</td>
+  </tr>
+  <tr>
+    <th>Ether</th>
+    <td>{{balance}}</td>
+  </tr>
+  <!--<tr>-->
+    <!--<th>Exit</th>-->
+    <!--<td><button class="btn btn-danger" (click)="logOut()">Log Out</button></td>-->
+  <!--</tr>-->
+</table>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">Your Tokens</div>
+    <div class="col-12 col-md-3 bg-light m-2 text-center" *ngFor="let token of userTokens" >
+      <div class="token" data-bs-toggle="modal" data-bs-target="#sellTokenModal" (click)="selectToken(token)">
+        Custom Token: {{token}}
+      </div>
+      <!--{{token.token}}-->
+      <!--{{token.owner}}-->
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="sellTokenModal" tabindex="-1" #sellModal>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Token Info {{selectedToken}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <table>
+          <tr>
+            <th>Token ID</th>
+            <td>{{selectedToken}}</td>
+          </tr>
+          <tr>
+            <th>Owner</th>
+            <td>{{account}}</td>
+          </tr>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+

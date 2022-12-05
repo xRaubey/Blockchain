@@ -1,0 +1,8 @@
+.token {
+    cursor: pointer;
+}
+
+.token:hover{
+    color: white;
+    background-color: black;
+}

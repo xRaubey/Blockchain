@@ -1,0 +1,11 @@
+.token{
+    cursor: pointer;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.token:hover {
+    background-color: black !important;
+    color: white;
+}
